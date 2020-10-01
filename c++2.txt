@@ -1,0 +1,82 @@
+#include<iostream>
+using namespace std;
+
+class Setinfo{
+    
+public:  
+
+    int Id;
+    float CGPA;
+    void setData(int id,float course1,float course2,float course3){
+        Id = id;
+        CGPA = (course1+course2+course3)/3;
+        
+    }
+};
+int main(){
+    
+    
+    cout<<"Enter total Student number : ";
+    int totalStudent;
+    cin>>totalStudent;
+
+     Setinfo obj[totalStudent];
+     
+     int id;
+     
+     float course1,course2,course3;
+     
+     
+    for(int i=0;i<totalStudent;i++)
+        {
+        
+        cout<<i+1<<".Student Id: ";;
+        cin>>id;
+        
+        cout<<"Course 1 CGPA : ";
+        cin>>course1;
+        
+        cout<<"Course 2 CGPA : ";
+        cin>>course2;
+        
+        cout<<"Course 3 CGPA: ";
+        cin>>course3;
+        
+        obj[i].setData(id,course1,course2,course3);
+        cout<<endl;
+        cout<<endl;
+    }
+      
+      
+    Setinfo rem;
+    
+    for(int i=0;i<totalStudent;i++){
+        
+        for(int j=i+1;j<totalStudent;j++){
+            
+            if(obj[i].CGPA < obj[j].CGPA){ 
+                
+                rem = obj[i];
+                obj[i] = obj[j];
+                obj[j] = rem; 
+                
+            }
+        }
+    }
+      
+     cout<<"Enter the sarching StudentId : ";
+     int sarchId;
+     cin>>sarchId;
+    
+    for(int i=0; i<totalStudent; i++){
+        
+        if(obj[i].Id == sarchId){
+            cout<<"CGPA of Student ID"<<sarchId<<" is "<<obj[i].CGPA<<endl;
+            cout<<"Merit position: "<<i+1;
+        }
+    }
+    
+
+
+    return 0;
+}
